@@ -1,0 +1,65 @@
+{
+  "name": "boilerplate-node-express",
+  "version": "1.0.0",
+  "description": "A website boilerplate using Node+Express, Webpack, Sass, PostCSS (Autoprefixer) and Pug/Jade templates",
+  "author": "John Hildenbiddle",
+  "license": "MIT",
+  "homepage": "https://github.com/jhildenbiddle/boilerplate-node-express#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://jhildenbiddle@github.com/jhildenbiddle/boilerplate-node-express.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jhildenbiddle/boilerplate-node-express/issues"
+  },
+  "keywords": [
+    "autoprefixer",
+    "boilerplate",
+    "express",
+    "jade",
+    "node",
+    "postcss",
+    "pug",
+    "sass",
+    "scss",
+    "template",
+    "webpack",
+    "website"
+  ],
+  "main": "server.js",
+  "scripts": {
+    "build": "npm-run-all -p build:*",
+    "build:js": "webpack --hide-modules",
+    "build:css": "node-sass -r --output-style compressed app/assets/scss -o static/assets/css && postcss -u autoprefixer static/assets/css/**/*.css -r",
+    "clean": "rimraf static",
+    "serve:dev": "nodemon server.js --ignore app/assets/ --ignore static/",
+    "serve:prod": "cross-env NODE_ENV=production nodemon server.js",
+    "start": "npm run start:dev",
+    "start:dev": "npm-run-all clean build:* -p watch:* serve:dev",
+    "start:prod": "npm-run-all clean build:* serve:prod",
+    "watch:css": "nodemon --watch app/assets/scss -e scss -x npm run build:css",
+    "watch:js": "npm run build:js -- --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "autoprefixer": "^6.3.7",
+    "body-parser": "^1.15.2",
+    "compression": "^1.6.2",
+    "cookie-parser": "^1.4.3",
+    "cross-env": "^2.0.0",
+    "express": "^4.14.0",
+    "node-sass": "^3.8.0",
+    "nodemon": "^1.10.0",
+    "npm-run-all": "^2.3.0",
+    "postcss-cli": "^2.5.2",
+    "pug": "^2.0.0-beta4",
+    "rimraf": "^2.5.4",
+    "serve-favicon": "^2.3.0",
+    "webpack": "^1.13.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.13.0",
+    "html-webpack-plugin": "^2.30.1",
+    "pug-loader": "^2.3.0"
+  }
+}
