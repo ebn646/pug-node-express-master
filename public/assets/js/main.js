@@ -1,5 +1,5 @@
 'use strict'
-// require('./main.css');
+require('../css/style.css')
 // Use the same template for the frontend code
 // var template = require('../../views/time.pug')
 

@@ -7,7 +7,7 @@ include ../mixins/repeat
 block append vars
     //- This value is overriding a value set on the layout template.
     //- Comment this line to use the value from the layout template.
-    - pageTitle   = 'Page Title'
+    - pageTitle   = 'Main Page Title'
 
     //- This value is overriding a value provided by the Express route.
     //- Comment this line to use the express route value.
@@ -16,7 +16,7 @@ block append vars
 block content
     h1= pageTitle
 
-    a(href="page") Another Page
+    a(href="page") The Other Page
 
     +repeat(2)
         p= welcomeText

@@ -1,8 +1,8 @@
 // Modules
 // =============================================================================
-var webpack = require('webpack')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 // Exports
 // =============================================================================
 module.exports = {
@@ -16,17 +16,17 @@ module.exports = {
     publicPath: './public/assets'
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.css$/
-        // loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+        test: /\.css$/,
+        use: ['style-loader', 'postcss-loader']
       },
       { test: /\.png$/, loader: 'file-loader' },
       { test: /\.pug$/, loader: 'pug-loader' }
     ]
   },
   plugins: [
-    new webpack.optimize.DedupePlugin(),
+    new ExtractTextPlugin('styles.css'),
     new webpack.optimize.OccurrenceOrderPlugin(true),
     new webpack.optimize.UglifyJsPlugin(),
     new HtmlWebpackPlugin({
@@ -35,7 +35,7 @@ module.exports = {
       template: './app/views/pages/default/index.pug'
     }),
     new HtmlWebpackPlugin({
-      filename: 'test.html',
+      filename: 'page.html',
       template: './app/views/pages/page/index.pug'
     })
   ]
