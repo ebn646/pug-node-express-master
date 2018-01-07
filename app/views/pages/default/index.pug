@@ -1,4 +1,24 @@
-//extends /layouts/app
-  body
-    #main
-      include ../../time.pug
+extends ../layouts/app
+
+//- Mixins
+include ../mixins/repeat
+
+//- Page variables
+block append vars
+    //- This value is overriding a value set on the layout template.
+    //- Comment this line to use the value from the layout template.
+    - pageTitle   = 'Page Title'
+
+    //- This value is overriding a value provided by the Express route.
+    //- Comment this line to use the express route value.
+    - welcomeText = 'Crap text from a page variable'
+
+block content
+    h1= pageTitle
+
+    a(href="page") Another Page
+
+    +repeat(2)
+        p= welcomeText
+
+    img(src="/assets/images/image.jpg")

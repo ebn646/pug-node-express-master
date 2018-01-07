@@ -7,13 +7,13 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 // =============================================================================
 module.exports = {
   entry: {
-    library: __dirname + '/public/assets/js/main.js'
+    library: __dirname + '/app/assets/js/main.js'
   },
   devtool: 'source-map',
   output: {
     path: __dirname + '/static/',
     filename: 'assets/js/main.js',
-    publicPath: './public/assets'
+    publicPath: './'
   },
   module: {
     loaders: [
@@ -32,11 +32,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       // favicon: 'favicon.ico',
-      template: './app/views/pages/default/index.pug'
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'test.html',
-      template: './app/views/pages/page/index.pug'
+      template: './app/views/template.pug'
     })
   ]
 }
