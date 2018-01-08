@@ -1,14 +1,4 @@
-'use strict'
-require('../css/style.css')
-// Use the same template for the frontend code
-// var template = require('../../views/time.pug')
+import sayHello from './hello'
+import '../scss/style.scss'
 
-// setInterval(function () {
-// var div = document.getElementById('main')
-// div.innerHTML = template({ time: new Date() })
-/// /div.style.color = 'navy'
-// }, 1000)
-
-// document.addEventListener('DOMContentLoaded', function(event) {
-//     console.log('DOM content loaded yes!');
-// });
+console.log(sayHello() + 'Eric B Nichols')
