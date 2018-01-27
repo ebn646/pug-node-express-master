@@ -6,7 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const WebpackNotifierPlugin = require('webpack-notifier')
 const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin')
 const path = require('path')
-
+const DashboardPlugin = require('webpack-dashboard/plugin')
 // Exports
 // =============================================================================
 module.exports = {
@@ -66,12 +66,12 @@ module.exports = {
     ]
   },
   plugins: [
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: {
-    //     warnings: false
-    //   }
-    // }),
-    // new WebpackNotifierPlugin({ title: 'Webpack' }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
+    new WebpackNotifierPlugin({ title: 'Webpack' }),
     // new HtmlWebpackPlugin({
     //   filename: 'index.html',
     //   // favicon: 'favicon.ico',
@@ -81,6 +81,7 @@ module.exports = {
     //   filename: 'page.html',
     //   template: './app/views/pages/page/index.pug'
     // }),
+    // new DashboardPlugin({ port: 3000 }),
     new ChunkManifestPlugin({
       filename: 'manifest.json',
       manifestVariable: 'webpackManifest',

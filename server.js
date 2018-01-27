@@ -10,11 +10,13 @@ var isProduction = process.env.NODE_ENV === 'production'
 var express = require('express')
 var path = require('path')
 var open = require('open')
+var DashboardPlugin = require('webpack-dashboard/plugin')
 var port = process.env.PORT || 3000
 var router = express.Router()
 var compiler = webpack(config)
 var app = express()
 
+// compiler.apply(new DashboardPlugin())
 // Set base director for views to allow abolute paths
 app.locals.basedir = path.join(__dirname, 'app/views')
 
@@ -58,18 +60,19 @@ app.listen(port, function (error) {
 // app.use(require('./error'))
 
 // Production
-// if (isProduction) {
-// app.listen(port, function () {})
-// } else {
-// Development
-// browserSync.create().init({
-//   server: './public',
-//   files: ['./app/views/**/*.pug', './public/**'],
-//   middleware: [app],
-//   open: false,
-//   notify: false,
-//   reloadOnRestart: true
-// })
-// }
+if (isProduction) {
+  // app.listen(port, function () {})
+} else {
+  // Development
+  browserSync.create().init({
+    proxy: 'http://localhost:3000',
+    port: 7000,
+    files: ['./app/views/**/*.pug', '.app/public/**'],
+    middleware: [app],
+    open: false,
+    notify: false,
+    reloadOnRestart: true
+  })
+}
 
 module.exports = app
